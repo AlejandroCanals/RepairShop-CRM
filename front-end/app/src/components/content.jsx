@@ -4,7 +4,7 @@ import React from 'react';
 export function Content(props){
   return (
     <div className="content  w-screen h-screen flex items-center justify-center">
-      <div className='mx-auto my-auto border-solid border-2 border-sky-500 w-content mr-10 h-full'>
+      <div className='mx-auto my-auto border-solid border-2 border-sky-500 w-content mr-10 h-contentHeight'>
        {props.children}
     
       </div>

@@ -1,24 +1,25 @@
 import axios from 'axios'
 
-const tasksApi = axios.create({
-    baseURL: 'http://localhost:8000/tasks/api/v1/tasks/'
+const rmaApi = axios.create({
+    baseURL: 'http://127.0.0.1:8000/app/rmaview/'
 });
 
+export const getAllRmas = () => {
+    return rmaApi.get('/');
+};
 
+export const getRma = (id) => {
+    return rmaApi.get(`/${id}/`);
+};
 
-export const getAllTasks = () =>tasksApi.get('/');
-export const getTask = (id) => tasksApi.get(`/${id}/`)
-export const createTask = (task) =>tasksApi.post('/',task);
-export const deleteTask = (id) =>tasksApi.delete(`/${id}`);
-export const updateTask = (id, task) => tasksApi.put(`/${id}/`,task)
+export const createRma = (rma) => {
+    return rmaApi.post('/', rma);
+};
 
+export const updateRma = (id, rma) => {
+    return rmaApi.put(`/${id}/`, rma);
+};
 
-/* OTRA MANERA
-export const getAllTasks = () => {
-    return tasksAPI.get('/');
-}
-
-export const createTask = (task) => {
-    return tasksAPI.post('/',task);
-}
-*/
+export const deleteRma = (id) => {
+    return rmaApi.delete(`/${id}/`);
+};

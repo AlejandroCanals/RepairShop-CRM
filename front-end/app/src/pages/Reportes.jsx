@@ -1,13 +1,13 @@
 import React from 'react';
-import { Table } from '../components/table';
+import { RmaTable } from '../components/rmaTable';
 
 
 export function Reportes() {
   return (
-    <Table>
+    <RmaTable>
 
 
-    </Table>
+    </RmaTable>
   );
 }
 
