@@ -8,7 +8,8 @@ export default {
     extend: {
       width: {
         'content': '96rem',
-        'contentHeight': '20rem'
+        'contentHeight': '20rem',
+        'tableHeight' : '40rem',
       },
       height: {
       }

@@ -6,7 +6,6 @@ export function Reportes() {
   return (
     <RmaTable>
 
-
     </RmaTable>
   );
 }
