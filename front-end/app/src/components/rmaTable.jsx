@@ -3,7 +3,7 @@ import { Content } from './content';
 import { getAllRmas } from '../api/rmas.api';
 import { Pagination } from './pagination';
 import { CreateButton } from './createButton';
-import { useNavigate , } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
@@ -42,7 +42,7 @@ export function RmaTable() {
 
   return (
 
-    <Content>
+    <div>
       <div style={{ height: '800px', }}>
         <table className=" min-w-full divide-y divide-gray-200 ">
           <thead>
@@ -81,7 +81,7 @@ export function RmaTable() {
                 <td className="px-6 py-4 whitespace-nowrap">{rma.technician}</td>
                 <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">{rma.resolution}</td>
                 <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis"><Link to={`/editar-rma/${rma.id}`}>
-                    <CreateButton text="Editar" className="py-0 px-1 font-normal bg-violet-400 text-gray-100" />
+                    <CreateButton text="Editar" className="py-0 px-1 font-normal bg-violet-400 text-gray-100  "  />
                   </Link></td>
 
               </tr>
@@ -96,8 +96,8 @@ export function RmaTable() {
           <CreateButton text="Crear Nuevo Informe" className="absolute bottom-0 right-2 " onClick={handleButtonClick} />
         </div>
       </div>
-
-    </Content>
+      </div>
+  
 
   );
 
