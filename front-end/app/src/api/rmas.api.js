@@ -8,9 +8,6 @@ export const getAllRmas = () => {
     return rmaApi.get('/');
 };
 
-export const getRma = (id) => {
-    return rmaApi.get(`/${id}/`);
-};
 
 export const createRma = (rma) => {
     return rmaApi.post('/', rma);
@@ -23,3 +20,7 @@ export const updateRma = (id, rma) => {
 export const deleteRma = (id) => {
     return rmaApi.delete(`/${id}/`);
 };
+
+export const getRmaById = (id) => {
+    return rmaApi.get(`/${id}/`);
+  };

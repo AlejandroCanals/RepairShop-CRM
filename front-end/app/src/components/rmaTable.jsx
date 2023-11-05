@@ -24,9 +24,11 @@ export function RmaTable() {
   //Paginacion
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
-  const [rmas, setRmas] = useState([]);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const [rmas, setRmas] = useState([]);
   const currentRmas = rmas.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => {
@@ -80,7 +82,7 @@ export function RmaTable() {
                 <td className="px-6 py-4 whitespace-nowrap">{rma.status}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{rma.technician}</td>
                 <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">{rma.resolution}</td>
-                <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis"><Link to={`/editar-rma/${rma.id}`}>
+                <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis"><Link to={`/editar-reporte/${rma.id}`}>
                     <CreateButton text="Editar" className="py-0 px-1 font-normal bg-violet-400 text-gray-100  "  />
                   </Link></td>
 
