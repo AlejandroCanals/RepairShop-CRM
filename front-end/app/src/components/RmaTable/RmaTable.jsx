@@ -7,15 +7,15 @@ import { PaginationContainer } from './PaginationContainer';
 import { CreateButton } from '../createButton';
 
 export function RmaTablee() {
-  const { rmas, currentRmas, itemsPerPage, currentPage, setCurrentPage } = useRmasData();
+  const { rmas, currentRmas, itemsPerPage, setCurrentPage, handleButtonClick } = useRmasData();
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  console.log('itemsPerPage', rmas)
   return (
     <div>
       <Content>
+        <div>
         <div>
           <table className="min-w-full divide-y divide-gray-200">
             <RmaTableHeader />
@@ -26,13 +26,13 @@ export function RmaTablee() {
             </tbody>
           </table>
         </div>
-
-        <div className="mt-10 overflow">
+</div>
+        <div className="mt-6 relative">
           <PaginationContainer
             itemsPerPage={itemsPerPage} totalItems={rmas.length} paginate={paginate} />
           
           <div className="relative">
-            <CreateButton text="Crear Nuevo Informe" className="absolute bottom-0 right-2" />
+            <CreateButton text="Crear Nuevo Informe" className="absolute bottom-0 right-2" onClick={handleButtonClick}/>
           </div>
         </div>
       </Content>

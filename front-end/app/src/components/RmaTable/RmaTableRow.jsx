@@ -13,6 +13,7 @@ export function RmaTableRow({ rma }) {
       <td className="px-6 py-4 whitespace-nowrap">{rma.technician}</td>
       <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">{rma.resolution}</td>
       <td className="px-6 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">
+      
         <Link to={`/editar-reporte/${rma.id}`}>
           <CreateButton text="Editar" className="py-0 px-1 font-normal bg-violet-400 text-gray-100" />
         </Link>

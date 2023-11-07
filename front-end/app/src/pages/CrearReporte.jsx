@@ -1,6 +1,5 @@
 import { Content } from '../components/content';
-import { CreateForm } from '../components/createForm';
-
+import { RmaForm } from '../components/Form/RmaForm';
 
 export function CreateReport() {
 
@@ -9,7 +8,7 @@ export function CreateReport() {
 
     <Content>  
       <div>
-        <CreateForm />
+        <RmaForm />
       </div>
     </Content>  
   );

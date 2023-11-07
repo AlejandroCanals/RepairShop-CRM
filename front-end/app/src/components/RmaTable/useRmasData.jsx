@@ -3,8 +3,11 @@ import { getAllRmas } from '../../api/rmas.api';
 import { useNavigate } from 'react-router-dom';
 
 export function useRmasData() {
+  //Creacion de estado para obtener los rmas
   const [rmas, setRmas] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // Agrega el estado de currentPage
+
+  //Estado para obtener la pagina actual para el elemento paginacion
+  const [currentPage, setCurrentPage] = useState(1); 
 
 
   // Calcula los elementos a mostrar en la página actual
@@ -14,7 +17,7 @@ export function useRmasData() {
   const currentRmas = rmas.slice(indexOfFirstItem, indexOfLastItem);
 
 
-  
+  //Navegacion a nuevo reporte
   const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate('/crear-reporte');
@@ -32,13 +35,13 @@ export function useRmasData() {
       });
   }, []);
 
+
+
   return {
     rmas,
-    handleButtonClick,
     currentRmas,
-    currentPage,
     setCurrentPage, // Añade la función para cambiar currentPage
     itemsPerPage,
-
+    handleButtonClick,
   };
 }

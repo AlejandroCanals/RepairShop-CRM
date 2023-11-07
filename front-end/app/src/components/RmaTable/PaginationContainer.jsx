@@ -9,7 +9,6 @@ export function PaginationContainer({itemsPerPage, totalItems, paginate }) {
 
 
 
-
   return (
     <div className="pagination text-center mt-2">
       {pageNumbers.map((number) => (
