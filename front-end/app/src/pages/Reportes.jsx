@@ -1,17 +1,14 @@
-import React from 'react';
-import { RmaTable } from '../components/rmaTable';
-import { Content } from '../components/content';
-
+import { RmaTablee } from '../components/RmaTable/RmaTable';
 
 
 export function Reportes() {
   return (
 
-    <Content>
-      <RmaTable>
+ 
+      <RmaTablee>
 
-      </RmaTable>
-    </Content>
+      </RmaTablee>
+  
   );
 }
 

@@ -33,7 +33,7 @@ export function CreateForm({ customContent }) {
     imei: '',
     reason: '',
     status: '',
-    technician: '',
+    technician: '', 
     resolution: '',
 
   });
