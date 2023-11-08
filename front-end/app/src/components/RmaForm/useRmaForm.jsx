@@ -1,14 +1,23 @@
-
-import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from "react-router-dom";
-import { createRma, getRmaById, updateRma, deleteRma } from '../../api/rmas.api'
-import { useEffect } from "react";
 import React, { useState } from 'react'; // Añade la importación de useState
+import { useForm } from 'react-hook-form';
+import { createRma, getRmaById, updateRma, deleteRma } from '../../api/rmas.api';
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-export function formdata(){
-    
-const {
-    register, //Registra los campos de entrada y los vincula con las validaciones y los estados
+
+export function useRmaForm() {
+
+  //Register se utiliza para registrar los campos del formulario 
+
+  /*handleSubmit se encarga de manejar la lógica de envío del formulario. se encargará de validar los campos según las reglas de validación definidas en register
+    y luego ejecutar la función de envío si la validación es exitosa.*/
+
+  //formstate Este objeto proporciona información sobre el estado del formulario, como si hay errores de validación en los campos del formulario
+
+  //con useform() inicializas las configuraciones del formulario y las funciones que quieres que se utilizen
+
+  const {
+    register,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -17,8 +26,6 @@ const {
   const navigate = useNavigate();
   const params = useParams();
   const informeId = params.id; // Obtiene el informeId de los parámetros de la URL
-
-
 
   // Define un estado local para almacenar los datos del informe
   const [informe, setInforme] = useState({
@@ -31,20 +38,13 @@ const {
     resolution: '',
 
   });
-  const statusOptions = [
-    { value: 'Received', label: 'Recibido' },
-    { value: 'In repair', label: 'En reparación' },
-    { value: 'Repaired', label: 'Reparado' },
-  ];
 
-
-   // Función para cargar los datos del informe si estamos en modo de edición
-   const cargarDatosDelInforme = () => {
+  // Función para cargar los datos del informe si estamos en modo de edición
+  const cargarDatosDelInforme = () => {
     if (informeId) {
       getRmaById(informeId)
         .then((response) => {
           const informeData = response.data;
-          console.log('Datos del informe cargados:', informeData);
           // Llena los campos del formulario con los datos del informe
           Object.keys(informeData).forEach((key) => {
             setValue(key, informeData[key]);
@@ -61,9 +61,7 @@ const {
     cargarDatosDelInforme();
   }, [informeId]);
 
-
-
-  //Segun el valor de informeId comprueba si esta en modo edicion o creación 
+  //Cuando se ejecuta onsubmit podemos ver los datos por consola
   const onSubmit = handleSubmit(async (data) => {
     try {
       if (informeId) {
@@ -79,8 +77,7 @@ const {
     }
   });
 
-  // Función para guardar lo que escribe el usuario cuando edita el documento 
-
+  //Funcion para capturar lo que escribe el usuario cuando edita
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setInforme({
@@ -102,13 +99,13 @@ const {
   };
 
   return {
-    informeId,
     informe,
-    statusOptions,
+    informeId,
     register,
-    formState: { errors },
+    handleSubmit,
+    errors,
     onSubmit,
-    handleDelete,
     handleInputChange,
+    handleDelete,
   };
 }

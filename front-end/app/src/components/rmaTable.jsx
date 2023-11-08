@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Content } from './content';
+import { Content } from './Content';
 import { getAllRmas } from '../api/rmas.api';
 import { Pagination } from './pagination';
 import { CreateButton } from './createButton';

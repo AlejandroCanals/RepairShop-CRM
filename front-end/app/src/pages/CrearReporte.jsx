@@ -1,6 +1,5 @@
-import { Content } from '../components/content';
-import { RmaForm } from '../components/Form/RmaForm';
-
+import { Content } from '../components/Content';
+import { RmaForm } from '../components/RmaForm/RmaForm';
 export function CreateReport() {
 
 
