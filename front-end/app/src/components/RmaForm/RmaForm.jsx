@@ -1,21 +1,24 @@
 
 import { useRmaForm } from "./useRmaForm";
 export function RmaForm() {
-    const {
-        informe,
-        informeId,
-        register,
-        errors,
-        onSubmit,
-        handleInputChange,
-        handleDelete,
-      } = useRmaForm();
+  const {
+    informe,
+    informeId,
+    register,
+    errors,
+    onSubmit,
+    handleInputChange,
+    handleDelete,
+  } = useRmaForm();
 
-return (
+  return (
 
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}  >
+
+
+
       <div className="mb-4">
-        <label htmlFor="client_name" className="block text-md font-semibold text-white">
+        <label htmlFor="client_name" className="grid-cols-4 text-md font-semibold text-white">
           Nombre del Cliente
         </label>
         <input
@@ -125,7 +128,7 @@ return (
 
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 ">
         <label htmlFor="resolution" className="block text-md font-semibold leading-6  " >
           Resolución
         </label>
@@ -140,6 +143,7 @@ return (
           className="mt-1 p-2 block w-full border border-gray-300 bg-gradient-to-br from-gray-800 to-gray-900 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
         />
       </div>
+
       <div className="mb-4">
 
 
@@ -152,7 +156,7 @@ return (
           </button>
         )}
       </div>
-   
+
 
     </form>
   );
