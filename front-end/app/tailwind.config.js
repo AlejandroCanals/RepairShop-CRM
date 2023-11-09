@@ -13,7 +13,9 @@ export default {
       },
       height: {
       }
+      
     },
   },
-  plugins: [],
+  plugins: [
+  ],
 }

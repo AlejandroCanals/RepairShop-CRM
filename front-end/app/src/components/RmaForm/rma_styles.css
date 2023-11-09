@@ -1,0 +1,10 @@
+.rma-form {
+    padding: 0.5rem;
+    display: block;
+    width: 66.6667%;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background: linear-gradient(to bottom right, #1f2937, #1e3a68);
+    outline: 2px solid transparent;
+    border-color: #667EEA;
+  }
