@@ -1,13 +1,15 @@
 import React from 'react';
 import { Content } from '../content';
-import { useRmasData } from './useRmasData';
+import { useTableData } from './useTableData';
 import { RmaTableHeader } from './RmaTableHeader';
 import { RmaTableRow } from './RmaTableRow';
 import { PaginationContainer } from './PaginationContainer';
 import { CreateButton } from '../createButton';
+import { SearchBar } from './SearchBar';
 
-export function RmaTablee() {
-  const { rmas, currentRmas, itemsPerPage, setCurrentPage, handleButtonClick } = useRmasData();
+
+export function RmaTablee(){
+  const { rmas, currentRmas, itemsPerPage, setCurrentPage, handleButtonClick,handleSearch, } = useTableData();
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -15,6 +17,9 @@ export function RmaTablee() {
   return (
     <div>
       <Content>
+        <div>
+        <SearchBar onSearch={handleSearch} />
+                </div>
         <div>
         <div>
           <table className="min-w-full divide-y divide-gray-200">
