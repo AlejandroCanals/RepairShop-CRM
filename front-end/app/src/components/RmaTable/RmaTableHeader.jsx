@@ -25,8 +25,7 @@ export function RmaTableHeader() {
         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           Resolution
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Resolution
+        <th className="px-6 py-5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
         </th>
       </tr>
     </thead>

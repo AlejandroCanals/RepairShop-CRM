@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { createRma, getRmaById, updateRma, deleteRma } from '../../api/rmas.api';
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 
 export function useRmaForm() {
@@ -16,7 +17,7 @@ export function useRmaForm() {
 
   //con useform() inicializas las configuraciones del formulario y las funciones que quieres que se utilizen
 
-  const {
+    const {
     register,
     handleSubmit,
     setValue,
@@ -26,6 +27,7 @@ export function useRmaForm() {
   const navigate = useNavigate();
   const params = useParams();
   const informeId = params.id; // Obtiene el informeId de los parámetros de la URL
+  
 
   // Define un estado local para almacenar los datos del informe
   const [informe, setInforme] = useState({
@@ -34,7 +36,7 @@ export function useRmaForm() {
     imei: '',
     reason: '',
     status: '',
-    technician: '', 
+    technician: '',
     resolution: '',
 
   });
@@ -64,14 +66,35 @@ export function useRmaForm() {
   //Cuando se ejecuta onsubmit podemos ver los datos por consola
   const onSubmit = handleSubmit(async (data) => {
     try {
-      if (informeId) {
-        // Si tenemos un informeId, estamos en modo de edición
-        await updateRma(informeId, data);
+      const isConfirmed = window.confirm("¿Estás seguro de que deseas actualizar este informe RMA?");
+      
+      if (isConfirmed) {
+        if (informeId) {
+          // Si tenemos un informeId, estamos en modo de edición
+          await updateRma(informeId, data);
+          toast.success("Tarea actualizada", {
+            position: "bottom-right",
+            style: {
+              background: "#101010",
+              color: "#fff",
+            },
+          });
+        } else {
+          // Si no tenemos un informeId, estamos en modo de creación
+          await createRma(data);
+          toast.success("Tarea creada", {
+            position: "bottom-right",
+            style: {
+              background: "#101010",
+              color: "#fff",
+            },
+          });
+        }
+        navigate('/reportes');
       } else {
-        // Si no tenemos un informeId, estamos en modo de creación
-        await createRma(data);
+        // Manejar la lógica de cancelación aquí
+        console.log('Creación o actualización cancelada');
       }
-      navigate('/reportes');
     } catch (error) {
       console.error('Error al crear o actualizar el informe RMA', error);
     }
@@ -89,10 +112,20 @@ export function useRmaForm() {
   // Función para eliminar el informe
   const handleDelete = async () => {
     try {
+      const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este informe RMA?");
+      if (isConfirmed){
       if (informeId) {
         await deleteRma(informeId);
         navigate('/reportes');
+        toast.success("Tarea eliminada", {
+          position: "bottom-right",
+          style: {
+            background: "#f5273c",
+            color: "#fff",
+          },
+        });
       }
+    }
     } catch (error) {
       console.error('Error al eliminar el informe RMA', error);
     }

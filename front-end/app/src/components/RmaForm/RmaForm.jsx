@@ -1,5 +1,7 @@
 
 import { useRmaForm } from "./useRmaForm";
+
+
 export function RmaForm() {
   const {
     informe,
@@ -10,6 +12,7 @@ export function RmaForm() {
     handleInputChange,
     handleDelete,
   } = useRmaForm();
+
 
   return (
 
@@ -147,9 +150,10 @@ export function RmaForm() {
       <div className="mb-4">
 
 
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-lg">
+        <button type="submit"  className="bg-green-500 text-white px-4 py-2 rounded-lg">
           {informeId ? 'Actualizar' : ' Crear Informe RMA'}
         </button>
+   
         {informeId && (
           <button type="button" onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 ml-2 rounded-lg">
             Eliminar

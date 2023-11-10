@@ -1,4 +1,4 @@
-import { Content } from '../components/Content';
+import { Content } from '../components/Content'
 import { RmaForm } from '../components/RmaForm/RmaForm';
 export function CreateReport() {
 
