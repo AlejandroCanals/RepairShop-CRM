@@ -2,30 +2,30 @@ import React from 'react';
 
 export function RmaTableHeader() {
   return (
-    <thead>
+    <thead className='bg-blue-600 '> 
       <tr>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Client Name
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider   ">
+          Nombre Cliente
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Device Model
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100  uppercase tracking-wider">
+          Modelo
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          IMEI
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">
+          Imei
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Reason
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100  uppercase tracking-wider">
+          Problema
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Status
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">
+          Estado
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Technician
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">
+          Técnico
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-          Resolution
+        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">
+          Resolución / Comentario
         </th>
-        <th className="px-6 py-5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th>
         </th>
       </tr>
     </thead>

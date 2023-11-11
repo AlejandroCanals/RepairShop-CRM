@@ -8,7 +8,7 @@ class RmaItem(models.Model):
     device_model = models.CharField(max_length=20, choices=(('Iphone', 'Iphone'), ('Samsung', 'Samsung'),('Other','Other')))
     imei = models.CharField(max_length=15)
     reason = models.TextField()
-    status = models.CharField(max_length=20, choices=(('Received', 'Received'), ('In repair', 'In repair'), ('Repaired', 'Repaired')))
+    status = models.CharField(max_length=20, choices=(('Received', 'Recibido'), ('In repair', 'En Taller'), ('Repaired', 'Reparado')))
     technician = models.ForeignKey('Technician', on_delete=models.SET_NULL, null=True)
     resolution = models.TextField(blank=True)
 

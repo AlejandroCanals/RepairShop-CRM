@@ -5,7 +5,7 @@ import { CreateButton } from '../createButton';
 export function RmaTableRow({ rma }) {
   const maxCharsInView = 60; // Número máximo de caracteres para mostrar en la vista de la tabla
 
-  // Truncar el texto para la vista de la tabla
+  // Acortar el texto que se puede ver en la tablla 
   const truncatedReason = rma.reason.length > maxCharsInView
     ? `${rma.reason.substring(0, maxCharsInView)}...`
     : rma.reason;
@@ -14,6 +14,19 @@ export function RmaTableRow({ rma }) {
     ? `${rma.resolution.substring(0, maxCharsInView)}...`
     : rma.resolution;
 
+    
+    function mapStatusToText(status) {
+      switch (status) {
+        case 'Received':
+          return 'Recibido';
+        case 'In repair':
+          return 'En Taller';
+        case 'Repaired':
+          return 'Reparado';
+        default:
+          return 'Desconocido'; // o podrías manejar de otra manera
+      }
+    }
 
   return (
     <tr key={rma.id}>
@@ -21,7 +34,7 @@ export function RmaTableRow({ rma }) {
       <td className="px-5 py-4 whitespace-nowrap">{rma.device_model}</td>
       <td className="px-5 py-4 whitespace-nowrap">{rma.imei}</td>
       <td className="px-5 py-4 whitespace-preline">{truncatedReason}</td>
-      <td className="px-5 py-4 whitespace-nowrap">{rma.status}</td>
+      <td className="px-5 py-4 whitespace-nowrap">{mapStatusToText(rma.status)}</td>
       <td className="px-5 py-4 whitespace-nowrap">{rma.technician}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{truncatedResolution}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">

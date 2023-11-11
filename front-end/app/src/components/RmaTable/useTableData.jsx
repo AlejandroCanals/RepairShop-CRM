@@ -10,7 +10,6 @@ export function useTableData() {
   const [currentPage, setCurrentPage] = useState(1);
 
 
-
   // Calcula los elementos a mostrar en la página actual
   const itemsPerPage = 9; // Número de elementos por página
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -18,19 +17,18 @@ export function useTableData() {
   const currentRmas = rmas.slice(indexOfFirstItem, indexOfLastItem);
 
 
-  //Navegacion a nuevo reporte
+  //Navegacion a crear nuevo reporte 
   const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate('/crear-reporte');
   };
 
-
+  // Realiza una solicitud a la API para obtener los datos RMA cuando el componente se monta
   useEffect(() => {
-    // Realiza una solicitud a la API para obtener los datos RMA cuando el componente se monta
     getAllRmas()
       .then((response) => {
         setRmas(response.data); // Guarda los datos en el estado
-        setOriginalRmas(response.data);
+        setOriginalRmas(response.data); // Guarda los datos originales para luego volver a mostrar cuando el campo busqueda vuelva a estar vacio
       })
       .catch((error) => {
         console.error('Error al obtener las RMA:', error);
@@ -41,6 +39,7 @@ export function useTableData() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const [originalRmas, setOriginalRmas] = useState([]);
+
   const handleSearch = (term) => {
     setSearchTerm(term);
   

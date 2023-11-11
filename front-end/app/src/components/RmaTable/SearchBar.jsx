@@ -10,13 +10,13 @@ export function SearchBar({ onSearch }) {
   };
 
   return (
-    <div>
+    <div  id='Buscador' className='mb-1'>
       <input
         type="text"
         placeholder="Buscar..."
         value={input}
         onChange={handleSearch}
-        className="border p-2 text-black"
+        className=" p-2 text-white bg-[#1C2533] rounded-lg" 
       />
     </div>
   );

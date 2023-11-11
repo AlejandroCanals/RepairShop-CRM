@@ -11,6 +11,9 @@ export default {
         'contentHeight': '20rem',
         'tableHeight' : '40rem',
       },
+      colors:{
+        'grey-background': '#1C2533',
+      },
       height: {
       }
       
