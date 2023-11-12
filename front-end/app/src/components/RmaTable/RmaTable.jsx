@@ -15,35 +15,37 @@ export function RmaTablee() {
   };
 
   return (
-    <div>
-      <Content>
 
-        <SearchBar onSearch={handleSearch} />
+    <Content>
 
-        
-          <div id='Tabla-Rmas'>
-            <table className="min-w-full divide-y divide-gray-600">
-              <RmaTableHeader />
-              <tbody>
-                {currentRmas.map((rma) => (
-                  <RmaTableRow key={rma.id} rma={rma} />
-                ))}
-              </tbody>
-            </table>
-          </div>
-       
+      <SearchBar onSearch={handleSearch} />
 
 
-        <div className="mt-6 relative">
+      <div id='Tabla-Rmas'>
+        <table className="min-w-full divide-y divide-gray-600">
+          <RmaTableHeader />
+          <tbody>
+            {currentRmas.map((rma) => (
+              <RmaTableRow key={rma.id} rma={rma} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+
+      <div className="mt-6 ">
+
+        <div className='absolute bottom-[30px] right-[750px]'>
           <PaginationContainer
             itemsPerPage={itemsPerPage} totalItems={rmas.length} paginate={paginate} />
-
-          <div className="relative">
-            <CreateButton text="Crear Nuevo Informe" className="absolute bottom-0 right-2" onClick={handleButtonClick} />
-            
-          </div>
         </div>
-      </Content>
-    </div>
+        <CreateButton text="Crear Nuevo Informe" className="absolute bottom-[27px] right-[100px] " onClick={handleButtonClick} />
+
+
+      </div>
+
+    </Content>
+
+
   );
 }

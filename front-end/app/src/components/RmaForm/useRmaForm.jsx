@@ -66,7 +66,8 @@ export function useRmaForm() {
   //Cuando se ejecuta onsubmit podemos ver los datos por consola
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const isConfirmed = window.confirm("¿Estás seguro de que deseas actualizar este informe RMA?");
+      const isConfirmed = window.confirm("¿Estás seguro de que deseas Crear o Actualizar este informe RMA?");
+      
       
       if (isConfirmed) {
         if (informeId) {

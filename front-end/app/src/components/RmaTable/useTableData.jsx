@@ -50,11 +50,26 @@ export function useTableData() {
       setRmas(originalRmas); // Restablecer a todos los datos originales
       return;
     }
-  
+    //Funcion que me permite cambiar el nombre que sale en la table en status 
+    function mapStatusToText(status) {
+      switch (status) {
+        case 'Received':
+          return 'Recibido';
+        case 'In repair':
+          return 'En Taller';
+        case 'Repaired':
+          return 'Reparado';
+        default:
+          return 'Desconocido'; // o podrías manejar de otra manera
+      }
+    }
     const filteredRmas = originalRmas.filter((rma) =>
       rma.client_name.toLowerCase().includes(lowerCasedSearchTerm) ||
       rma.device_model.toLowerCase().includes(lowerCasedSearchTerm) ||
-      rma.imei.toLowerCase().includes(lowerCasedSearchTerm)
+      rma.imei.toLowerCase().includes(lowerCasedSearchTerm)||
+      rma.status.toLowerCase().includes(lowerCasedSearchTerm)||
+      mapStatusToText(rma.status).toLowerCase().includes(lowerCasedSearchTerm)
+
     );
   
     setCurrentPage(1);

@@ -40,7 +40,7 @@ export function RmaTableRow({ rma }) {
       <td className="px-5 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">
       
         <Link to={`/editar-reporte/${rma.id}`}>
-          <CreateButton text="Editar" className="py-0 px-1 font-normal bg-violet-400 text-gray-100" />
+          <CreateButton text="Editar" className="py-0 px-1 font-normal bg-violet-500 text-gray-100" />
         </Link>
       </td>
     </tr>
