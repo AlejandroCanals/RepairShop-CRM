@@ -24,3 +24,8 @@ export const deleteRma = (id) => {
 export const getRmaById = (id) => {
     return rmaApi.get(`/${id}/`);
   };
+
+  
+const loginAPI = axios.create({
+    baseURL: 'http://127.0.0.1:8000/app/api/auth/login/'
+});

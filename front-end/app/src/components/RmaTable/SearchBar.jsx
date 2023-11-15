@@ -5,7 +5,9 @@ export function SearchBar({ onSearch }) {
 
   const handleSearch = (e) => {
     const searchTerm = e.target.value;
+
     setInput(searchTerm);
+    
     onSearch(searchTerm);
   };
 
