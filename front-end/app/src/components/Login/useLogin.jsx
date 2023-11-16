@@ -25,7 +25,6 @@ export async function loginUser(username, password) {
         console.error('Error durante la solicitud:', error.message);
       }
   
-      // Puedes relanzar el error o manejarlo de otra manera
   
     }
   }

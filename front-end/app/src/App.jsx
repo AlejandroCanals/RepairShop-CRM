@@ -7,28 +7,39 @@ import { CreateReport } from "./pages/CrearReporte";
 import { Toaster } from "react-hot-toast";
 import { LogIn } from "./pages/LogIn";
 import { AuthProvider } from "./components/Login/AuthContext";
+import { PrivateRoute } from "./components/Routing/PrivateRoute"
 
 
 function App() {
   return (
     <AuthProvider>
-    <BrowserRouter>
-    
+      <BrowserRouter>
+
         <Sidebar />
 
         <Routes>
           <Route path="/" element={<Inicio />} />
-          <Route path="/inicio" element={<Inicio />} />
-          <Route path="/reportes" element={<Reportes />} />
-          <Route path="/crear-reporte" element={<CreateReport />} />
+          <Route path="/Inicio" element={<Inicio />} />
+          <Route
+            path="/reportes"
+            element={
+              <PrivateRoute>
+                <Route index element={<Reportes />} />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/crear-reporte"   element={
+              <PrivateRoute>
+                <Route index element={<CreateReport />} />
+              </PrivateRoute>
+            } />
           <Route path="/editar-reporte/:id" element={<CreateReport />} />
-
           <Route path="/log-in" element={<LogIn />} />
-  
         </Routes>
-  
-      <Toaster></Toaster>
-    </BrowserRouter>
+
+
+        <Toaster></Toaster>
+      </BrowserRouter>
     </AuthProvider>
   );
 }

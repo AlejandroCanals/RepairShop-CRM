@@ -1,0 +1,44 @@
+src/
+|-- components/
+|   |-- Common/
+|   |   |-- WelcomeMessage.jsx
+|   |
+|   |-- Inicio/
+|   |   |-- StatusCard.jsx
+|   |   |-- useStatusCount.jsx
+|   |
+|   |-- Login/
+|   |   |-- LoginForm.jsx
+|   |   |-- AuthContext.jsx
+|   |   |-- useLogin.jsx
+|   |
+|   |-- RmaForm/
+|   |   |-- rma_styles.css
+|   |   |-- RmaForm.jsx
+|   |   |-- useRmaForm.jsx
+|   |   |
+|   |-- RmaTable/
+|   |   |-- PaginationContainer.jsx
+|   |   |-- RmaTable.jsx 
+|   |   |-- RmaTableHeader.jsx
+|   |   |-- RmaTableRow.jsx 
+|   |   |-- SearchBar.jsx
+|   |   |-- useTableData.jsx
+|   |   |
+|   |-- ui/
+|   |   |-- UserIcon.jsx
+|   |   |
+|   |--Content.jsx
+|   |--CreateButton.jsx
+|   |--navigateUtil.jsx
+|   |--sidebar.jsx
+
+
+|
+|-- pages/
+|   |-- Inicio.jsx
+|   |-- Login.jsx
+|   |-- Reportes.jsx
+|   |-- CrearReporte.jsx
+
+|
