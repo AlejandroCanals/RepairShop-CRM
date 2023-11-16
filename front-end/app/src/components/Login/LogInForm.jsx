@@ -1,22 +1,39 @@
 import React, { useState } from "react";
 import {loginUser} from './useLogin'
+import { useAuth } from './AuthContext';
+import { useNavigate } from "react-router-dom";
+import { navigateUtil } from "../navigateUtil";
 
 
 export function LoginForm() {
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
-      try {
-          const response = await loginUser(username, password);
+    try {
+      const response = await loginUser(username, password);
 
-          // Manejar la respuesta del backend (puede incluir redireccionamiento, guardar token, etc.)
-          console.log(response);
-      } catch (error) {
-          // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
-          console.error(error);
+      // Manejar la respuesta del backend (puede incluir redireccionamiento, guardar token, etc.)
+      console.log(response);
+
+      // Verificar si el inicio de sesión fue exitoso y el usuario está presente
+      if (response && response.userData) {
+        login(response.userData);
+
+        // Navegar a la página de Inicio
+        navigateUtil(navigate, "/Inicio");
+      } else {
+        // Si no hay datos de usuario en la respuesta, puedes manejarlo de alguna manera
+        console.error("Inicio de sesión fallido. Datos de usuario no disponibles.");
       }
+    } catch (error) {
+      // Manejar errores (por ejemplo, mostrar un mensaje de error al usuario)
+      console.error(error);
+    }
   };
 
 
@@ -31,7 +48,7 @@ export function LoginForm() {
         <h1 className="text-white font-bold text-2xl mb-1">Hola!</h1>
 
         <p className="text-sm font-normal text-white mb-8">
-          Bienvenido de nuevo
+          Por favor, Introduce tu Usuario y Contraseña 
         </p>
 
         <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">

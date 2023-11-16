@@ -24,7 +24,7 @@ export function RmaTableRow({ rma }) {
         case 'Repaired':
           return 'Reparado';
         default:
-          return 'Desconocido'; // o podrías manejar de otra manera
+          return 'Desconocido';
       }
     }
 

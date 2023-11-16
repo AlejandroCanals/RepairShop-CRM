@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
+from rest_framework.authtoken.models import Token
 
 # Create your views here.
 
@@ -41,7 +42,6 @@ class StatusCountView(viewsets.ViewSet):
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
-        # Obtener las credenciales del cuerpo de la solicitud
         username = request.data.get('username')
         password = request.data.get('password')
 
@@ -52,8 +52,17 @@ class LoginView(APIView):
             # Iniciar sesión
             login(request, user)
 
-            # Aquí puedes devolver información adicional si es necesario
-            return JsonResponse({'message': 'Login exitoso'}, status=status.HTTP_200_OK)
+            # Generar token de autenticación
+            token, created = Token.objects.get_or_create(user=user)
+
+            # Obtener detalles del usuario
+            user_data = {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'token':token.key,
+            }
+
+            return JsonResponse({'message': 'Login exitoso', 'userData': user_data}, status=status.HTTP_200_OK)
         else:
-            # Devolver un mensaje de error si la autenticación falla
             return JsonResponse({'message': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
