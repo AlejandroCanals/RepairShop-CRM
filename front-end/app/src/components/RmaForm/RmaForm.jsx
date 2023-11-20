@@ -11,8 +11,8 @@ export function RmaForm() {
     onSubmit,
     handleInputChange,
     handleDelete,
+    listaDeTecnicos,
   } = useRmaForm();
-
 
   return (
 
@@ -117,18 +117,21 @@ export function RmaForm() {
         <label htmlFor="technician" className="block text-md font-semibold text-white">
           Técnico
         </label>
-        <input
-          type="text"
+        <select
           id="technician"
           name="technician"
-          defaultValue={informe.technician}
+          defaultValue={informe.assigned_technician ? informe.assigned_technician.id : ''}
           onChange={handleInputChange}
-
-
-          className="mt-1 p-2 block w-full border border-gray-300 rounded-md  bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        {errors.technician && <span>This filed is required</span>}
-
+          className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+        >
+          <option value="">Selecciona un técnico</option>
+          {listaDeTecnicos.map((tecnico) => (
+            <option key={tecnico.id} value={tecnico.id}>
+              {tecnico.user.username}
+            </option>
+          ))}
+        </select>
+        {errors.technician && <span>This field is required</span>}
       </div>
 
       <div className="mb-4 ">
@@ -146,14 +149,28 @@ export function RmaForm() {
           className="mt-1 p-2 block w-full border border-gray-300 bg-gradient-to-br from-gray-800 to-gray-900 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
         />
       </div>
-
+      <div className="mb-4">
+        <label htmlFor="assigned_date" className="block text-md font-semibold text-white">
+          Fecha Asignada
+        </label>
+        <input
+          {...register("assigned_date", { required: true })}
+          type="date"
+          id="assigned_date"
+          name="assigned_date"
+          defaultValue={informe.assigned_date}
+          onChange={handleInputChange}
+          className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+        />
+        {errors.assigned_date && <span>This field is required</span>}
+      </div>
       <div className="mb-4">
 
 
-        <button type="submit"  className="bg-green-500 text-white px-4 py-2 rounded-lg">
+        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-lg">
           {informeId ? 'Actualizar' : ' Crear Informe RMA'}
         </button>
-   
+
         {informeId && (
           <button type="button" onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 ml-2 rounded-lg">
             Eliminar

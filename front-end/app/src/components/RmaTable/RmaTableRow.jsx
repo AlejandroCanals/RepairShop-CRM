@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CreateButton } from '../createButton';
 
 export function RmaTableRow({ rma }) {
-  const maxCharsInView = 60; // Número máximo de caracteres para mostrar en la vista de la tabla
+  const maxCharsInView = 20; // Número máximo de caracteres para mostrar en la vista de la tabla
 
   // Acortar el texto que se puede ver en la tablla 
   const truncatedReason = rma.reason.length > maxCharsInView
@@ -35,7 +35,7 @@ export function RmaTableRow({ rma }) {
       <td className="px-5 py-4 whitespace-nowrap">{rma.imei}</td>
       <td className="px-5 py-4 whitespace-preline">{truncatedReason}</td>
       <td className="px-5 py-4 whitespace-nowrap">{mapStatusToText(rma.status)}</td>
-      <td className="px-5 py-4 whitespace-nowrap">{rma.technician}</td>
+      <td className="px-5 py-4 whitespace-nowrap">{rma.assigned_technician.username}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{truncatedResolution}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">
       
