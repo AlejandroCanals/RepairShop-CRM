@@ -113,26 +113,7 @@ export function RmaForm() {
 
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="technician" className="block text-md font-semibold text-white">
-          Técnico
-        </label>
-        <select
-          id="technician"
-          name="technician"
-          defaultValue={informe.assigned_technician ? informe.assigned_technician.id : ''}
-          onChange={handleInputChange}
-          className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
-        >
-          <option value="">Selecciona un técnico</option>
-          {listaDeTecnicos.map((tecnico) => (
-            <option key={tecnico.id} value={tecnico.id}>
-              {tecnico.user.username}
-            </option>
-          ))}
-        </select>
-        {errors.technician && <span>This field is required</span>}
-      </div>
+
 
       <div className="mb-4 ">
         <label htmlFor="resolution" className="block text-md font-semibold leading-6  " >

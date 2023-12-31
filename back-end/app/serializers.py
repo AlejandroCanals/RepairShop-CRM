@@ -19,7 +19,6 @@ class TechnicianSerializer(serializers.ModelSerializer):
         fields = ['id', 'username']  # Asegúrate de incluir los campos que necesitas
 
 class RmaItemSerializer(serializers.ModelSerializer):
-    assigned_technician = TechnicianSerializer()  # Utiliza el serializador de Technician
 
     class Meta:
         model = RmaItem

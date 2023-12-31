@@ -20,23 +20,7 @@ class RmaView(viewsets.ModelViewSet):
     queryset = RmaItem.objects.all()
     serializer_class = RmaItemSerializer
 
-    def perform_create(self, serializer):
-        # Verifica si se proporciona un técnico en la solicitud
-        technician_id = self.request.data.get('assigned_technician', None)
 
-        if technician_id:
-            try:
-                # Asigna el técnico especificado al RmaItem
-                technician = Technician.objects.get(id=technician_id)
-                serializer.save(assigned_technician=technician)
-            except Technician.DoesNotExist:
-                # Manejar el caso en el que no se encuentra el técnico
-                # Puedes devolver un error o realizar alguna acción específica
-                pass
-        else:
-            # Si no se proporciona un técnico, asigna el técnico actualmente autenticado
-            # o puedes manejar este caso de acuerdo a tus necesidades
-            serializer.save(assigned_technician=self.request.user.technician)
 
 class TechnicianView(viewsets.ModelViewSet):
     queryset = Technician.objects.all()

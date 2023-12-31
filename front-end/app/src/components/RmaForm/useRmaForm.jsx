@@ -47,6 +47,7 @@ export function useRmaForm() {
   // Crea un estado para obtener la lista de tecnicos
   const [listaDeTecnicos, setListaDeTecnicos] = useState([]);
 
+
   // Función para cargar los datos del informe si estamos en modo de edición
   const cargarDatosDelInforme = () => {
     if (informeId) {
@@ -115,7 +116,7 @@ export function useRmaForm() {
     } catch (error) {
       console.error("Error al crear o actualizar el informe RMA", error);
       if (error.response) {
-        console.error("Response del servidor:", error.response);
+        console.error("Response del servidor:", error.response.data);
       }
     }
   });
@@ -163,5 +164,6 @@ export function useRmaForm() {
     handleInputChange,
     handleDelete,
     listaDeTecnicos,
+    
   };
 }
