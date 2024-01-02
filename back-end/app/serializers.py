@@ -13,13 +13,12 @@ class UserSerializer(UserCreateSerializer):
 
 
 class TechnicianSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username')
     class Meta:
         model = Technician
-        fields = ['id', 'username']  # Asegúrate de incluir los campos que necesitas
-
+        fields = ['id', 'technician_name','user']
+        
 class RmaItemSerializer(serializers.ModelSerializer):
-
+    assigned_technician = TechnicianSerializer()
     class Meta:
         model = RmaItem
         fields = '__all__'

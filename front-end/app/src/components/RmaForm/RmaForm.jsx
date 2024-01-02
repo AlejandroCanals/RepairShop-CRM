@@ -1,6 +1,6 @@
 
 import { useRmaForm } from "./useRmaForm";
-
+import React, { useState } from 'react';
 
 export function RmaForm() {
   const {
@@ -12,6 +12,8 @@ export function RmaForm() {
     handleInputChange,
     handleDelete,
     listaDeTecnicos,
+    handleTechnicianChange,
+    selectedTechnician,
   } = useRmaForm();
 
   return (
@@ -129,6 +131,27 @@ export function RmaForm() {
 
           className="mt-1 p-2 block w-full border border-gray-300 bg-gradient-to-br from-gray-800 to-gray-900 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
         />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="assigned_technician" className="block text-md font-semibold text-white">
+          Técnico Asignado
+        </label>
+        <select
+          id="assigned_technician"
+          name="assigned_technician"
+          value={selectedTechnician}
+          onChange={handleTechnicianChange}
+          className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+        >
+          <option value="" disabled>
+            Seleccione un técnico
+          </option>
+          {listaDeTecnicos.map((tecnico) => (
+            <option key={tecnico.id} value={tecnico.id}>
+              {tecnico.technician_name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-4">
         <label htmlFor="assigned_date" className="block text-md font-semibold text-white">

@@ -47,8 +47,9 @@ export function RmaTableRow({ rma }) {
       <td className="px-5 py-4 whitespace-nowrap">{mapStatusToText(rma.status)}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{truncatedResolution}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{formatDate(rma.assigned_date)}</td>
-      <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{}</td>
-
+      <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">
+  {rma.assigned_technician ? rma.assigned_technician.technician_name : 'Sin Técnico Asignado'}
+</td>
 
       <td className="px-5 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">
       

@@ -47,7 +47,21 @@ export function useRmaForm() {
   // Crea un estado para obtener la lista de tecnicos
   const [listaDeTecnicos, setListaDeTecnicos] = useState([]);
 
+  const [selectedTechnician, setSelectedTechnician] = useState("");
 
+  const handleTechnicianChange = (event) => {
+    const technicianId = event.target.value;
+  
+    // Utiliza el método find para buscar el técnico por ID en listaDeTecnicos
+    const selectedTechnician = listaDeTecnicos.find((tecnico) => tecnico.id === +technicianId);
+  
+    // Actualiza el estado con el técnico seleccionado
+    setSelectedTechnician(selectedTechnician);
+  
+    // Imprime el objeto del técnico en la consola
+    console.log(selectedTechnician);
+  };
+  
   // Función para cargar los datos del informe si estamos en modo de edición
   const cargarDatosDelInforme = () => {
     if (informeId) {
@@ -81,43 +95,53 @@ export function useRmaForm() {
 
   //Cuando se ejecuta onsubmit podemos ver los datos por consola
   const onSubmit = handleSubmit(async (data) => {
-    try {
-      const isConfirmed = window.confirm(
-        "¿Estás seguro de que deseas Crear o Actualizar este informe RMA?"
-      );
-
-      if (isConfirmed) {
-        if (informeId) {
-          // Si tenemos un informeId, estamos en modo de edición
-          await updateRma(informeId, data);
-          toast.success("Tarea actualizada", {
-            position: "bottom-right",
-            style: {
-              background: "#101010",
-              color: "#fff",
-            },
-          });
+    // Verifica que selectedTechnician sea un objeto con la propiedad 'id'
+    if (selectedTechnician && selectedTechnician.id) {
+      // Agrega solo el ID del técnico seleccionado a los datos del formulario
+      data.assigned_technician = { id: selectedTechnician.id };
+      
+      console.log("data", data);
+  
+      try {
+        const isConfirmed = window.confirm(
+          "¿Estás seguro de que deseas Crear o Actualizar este informe RMA?"
+        );
+  
+        if (isConfirmed) {
+          if (informeId) {
+            // Si tenemos un informeId, estamos en modo de edición
+            await updateRma(informeId, data);
+            toast.success("Tarea actualizada", {
+              position: "bottom-right",
+              style: {
+                background: "#101010",
+                color: "#fff",
+              },
+            });
+          } else {
+            // Si no tenemos un informeId, estamos en modo de creación
+            await createRma(data);
+            toast.success("Tarea creada", {
+              position: "bottom-right",
+              style: {
+                background: "#101010",
+                color: "#fff",
+              },
+            });
+          }
+          navigate("/reportes");
         } else {
-          // Si no tenemos un informeId, estamos en modo de creación
-          await createRma(data);
-          toast.success("Tarea creada", {
-            position: "bottom-right",
-            style: {
-              background: "#101010",
-              color: "#fff",
-            },
-          });
+          // Manejar la lógica de cancelación aquí
+          console.log("Creación o actualización cancelada");
         }
-        navigate("/reportes");
-      } else {
-        // Manejar la lógica de cancelación aquí
-        console.log("Creación o actualización cancelada");
+      } catch (error) {
+        console.error("Error al crear o actualizar el informe RMA", error);
+        if (error.response) {
+          console.error("Response del servidor:", error.response.data);
+        }
       }
-    } catch (error) {
-      console.error("Error al crear o actualizar el informe RMA", error);
-      if (error.response) {
-        console.error("Response del servidor:", error.response.data);
-      }
+    } else {
+      console.error("Técnico no seleccionado o sin ID");
     }
   });
   //Funcion para capturar lo que escribe el usuario cuando edita
@@ -164,6 +188,10 @@ export function useRmaForm() {
     handleInputChange,
     handleDelete,
     listaDeTecnicos,
+    setValue,
+    setInforme,
+    handleTechnicianChange,
+    selectedTechnician,
     
   };
 }
