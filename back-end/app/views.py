@@ -5,40 +5,40 @@ from .models import RmaItem
 from django.http import JsonResponse
 from django.db.utils import OperationalError
 from rest_framework.response import Response
-from django.contrib.auth.models import Group
-from rest_framework import generics
 
 #Autentificación
 from rest_framework import status
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
-from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
 class RmaView(viewsets.ModelViewSet):
     queryset = RmaItem.objects.all()
     serializer_class = RmaItemSerializer
-    
     def perform_create(self, serializer):
         assigned_technician_data = self.request.data.get('assigned_technician')
 
         # Asegúrate de que assigned_technician_data tenga el ID del técnico
         technician_id = assigned_technician_data.get('id')
 
-        # Busca el técnico existente por ID
-        assigned_technician = Technician.objects.get(id=technician_id)
+        # Busca el técnico existente por ID o crea uno nuevo si no existe
+        assigned_technician, _ = Technician.objects.get_or_create(id=technician_id)
 
         # Asigna el técnico existente al informe
         serializer.save(assigned_technician=assigned_technician)
+    def perform_update(self, serializer):
+        assigned_technician_data = self.request.data.get('assigned_technician')
+        technician_id = assigned_technician_data.get('id')
+        assigned_technician = Technician.objects.get(id=technician_id)
+        serializer.save(assigned_technician=assigned_technician)
+    
 
 class TechnicianView(viewsets.ModelViewSet):
     queryset = Technician.objects.all()
     serializer_class = TechnicianSerializer
     
-
-
 
 
 class StatusCountView(viewsets.ViewSet):

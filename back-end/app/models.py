@@ -27,7 +27,7 @@ class RmaItem(models.Model):
     reason = models.TextField()
     status = models.CharField(max_length=20, choices=(('Received', 'Recibido'), ('In repair', 'En Taller'), ('Repaired', 'Reparado')))
     resolution = models.TextField(blank=True)
-    assigned_technician = models.ForeignKey(Technician, null=True, blank=True, on_delete=models.SET_NULL)
+    assigned_technician = models.ForeignKey(Technician, null=True, blank=True, on_delete=models.SET_NULL,)
     assigned_date = models.DateTimeField(null=True, blank=True)
 
 

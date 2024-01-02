@@ -14,4 +14,6 @@ urlpatterns = [
     path('api/auth/', include('djoser.urls')),
     path('api/auth/token/', include('djoser.urls.authtoken')),
     path('api/auth/login/', LoginView.as_view(), name='login'),
+    
+    
 ]

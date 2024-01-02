@@ -48,31 +48,37 @@ export function useRmaForm() {
   const [listaDeTecnicos, setListaDeTecnicos] = useState([]);
 
   const [selectedTechnician, setSelectedTechnician] = useState("");
-
   const handleTechnicianChange = (event) => {
     const technicianId = event.target.value;
-  
-    // Utiliza el método find para buscar el técnico por ID en listaDeTecnicos
+    console.log("Technician ID:", technicianId);
+
     const selectedTechnician = listaDeTecnicos.find((tecnico) => tecnico.id === +technicianId);
-  
-    // Actualiza el estado con el técnico seleccionado
+    console.log("Selected Technician:", selectedTechnician);
+
+    setValue("assigned_technician", selectedTechnician ? selectedTechnician.id : "");
     setSelectedTechnician(selectedTechnician);
-  
-    // Imprime el objeto del técnico en la consola
-    console.log(selectedTechnician);
-  };
-  
+    handleInputChange(event);
+};
   // Función para cargar los datos del informe si estamos en modo de edición
   const cargarDatosDelInforme = () => {
     if (informeId) {
       getRmaById(informeId)
         .then((response) => {
           const informeData = response.data;
+      
           // Llena los campos del formulario con los datos del informe
-          Object.keys(informeData).forEach((key) => {
+        Object.keys(informeData).forEach((key) => {
+          if (key === 'assigned_technician') {
+            setSelectedTechnician(informeData[key]);
+          } else if (key === 'assigned_date') {
+            // Asegúrate de que la fecha esté en el formato correcto (YYYY-MM-DD)
+            const fechaFormateada = new Date(informeData[key]).toISOString().split('T')[0];
+            setValue(key, fechaFormateada);
+          } else {
             setValue(key, informeData[key]);
-          });
-        })
+          }
+        });
+      })
         .catch((error) => {
           console.error("Error al obtener los detalles del informe:", error);
         });
@@ -111,6 +117,8 @@ export function useRmaForm() {
           if (informeId) {
             // Si tenemos un informeId, estamos en modo de edición
             await updateRma(informeId, data);
+            console.log("su informe:" , data)
+
             toast.success("Tarea actualizada", {
               position: "bottom-right",
               style: {
@@ -147,7 +155,8 @@ export function useRmaForm() {
   //Funcion para capturar lo que escribe el usuario cuando edita
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    
+  
+    setValue(name, value);  // Actualiza el valor del campo en el formulario
     setInforme({
       ...informe,
       [name]: value,

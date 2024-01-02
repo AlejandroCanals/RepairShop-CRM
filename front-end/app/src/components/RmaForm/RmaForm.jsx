@@ -1,6 +1,6 @@
 
 import { useRmaForm } from "./useRmaForm";
-import React, { useState } from 'react';
+import React from 'react';
 
 export function RmaForm() {
   const {
@@ -139,9 +139,11 @@ export function RmaForm() {
         <select
           id="assigned_technician"
           name="assigned_technician"
-          value={selectedTechnician}
+          value={selectedTechnician ? selectedTechnician.id : ""}
           onChange={handleTechnicianChange}
           className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+          
+          
         >
           <option value="" disabled>
             Seleccione un técnico
