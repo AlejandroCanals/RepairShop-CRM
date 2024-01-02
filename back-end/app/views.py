@@ -17,21 +17,15 @@ from rest_framework.authtoken.models import Token
 class RmaView(viewsets.ModelViewSet):
     queryset = RmaItem.objects.all()
     serializer_class = RmaItemSerializer
+
     def perform_create(self, serializer):
         assigned_technician_data = self.request.data.get('assigned_technician')
-
-        # Asegúrate de que assigned_technician_data tenga el ID del técnico
-        technician_id = assigned_technician_data.get('id')
-
-        # Busca el técnico existente por ID o crea uno nuevo si no existe
-        assigned_technician, _ = Technician.objects.get_or_create(id=technician_id)
-
-        # Asigna el técnico existente al informe
+        assigned_technician, _ = Technician.objects.get_or_create(**assigned_technician_data)
         serializer.save(assigned_technician=assigned_technician)
+
     def perform_update(self, serializer):
         assigned_technician_data = self.request.data.get('assigned_technician')
-        technician_id = assigned_technician_data.get('id')
-        assigned_technician = Technician.objects.get(id=technician_id)
+        assigned_technician = Technician.objects.get_or_create(**assigned_technician_data)[0]
         serializer.save(assigned_technician=assigned_technician)
     
 

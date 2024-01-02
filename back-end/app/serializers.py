@@ -13,26 +13,37 @@ class UserSerializer(UserCreateSerializer):
 
 
 class TechnicianSerializer(serializers.ModelSerializer):
-    user = UserSerializer(required=False)
     class Meta:
         model = Technician
-        fields = ['id', 'technician_name','user']
-        
+        fields = '__all__'
+
 class RmaItemSerializer(serializers.ModelSerializer):
-    assigned_technician = TechnicianSerializer(required=False)
+    assigned_technician = TechnicianSerializer()
+
     class Meta:
         model = RmaItem
         fields = '__all__'
 
+    def create(self, validated_data):
+        technician_data = validated_data.pop('assigned_technician')
+        technician = Technician.objects.get_or_create(**technician_data)[0]
+        rma_item = RmaItem.objects.create(assigned_technician=technician, **validated_data)
+        return rma_item
+
     def update(self, instance, validated_data):
-        # Handle the update logic for the RmaItem instance here
-        # For example, if you want to update the assigned_technician field
-        # you need to get the Technician instance from the validated data
-        # and then update the assigned_technician field of the RmaItem instance
-        assigned_technician_data = validated_data.pop('assigned_technician', None)
-        if assigned_technician_data:
-            assigned_technician = instance.assigned_technician
-            assigned_technician_serializer = TechnicianSerializer(assigned_technician, data=assigned_technician_data, partial=True)
-            if assigned_technician_serializer.is_valid():
-                assigned_technician_serializer.save()
-        return super().update(instance, validated_data)
+        technician_data = validated_data.get('assigned_technician')
+
+        if isinstance(technician_data, dict):
+            # Si technician_data es un diccionario, actualiza el objeto Technician
+            for key, value in technician_data.items():
+                setattr(instance.assigned_technician, key, value)
+            instance.assigned_technician.save()
+        else:
+            # Si technician_data es un objeto Technician, simplemente asigna
+            instance.assigned_technician = technician_data
+
+        # Resto del código de actualización según tus necesidades
+        # ...
+
+        instance.save()
+        return instance

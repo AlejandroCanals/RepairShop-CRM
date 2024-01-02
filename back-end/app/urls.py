@@ -16,4 +16,5 @@ urlpatterns = [
     path('api/auth/login/', LoginView.as_view(), name='login'),
     
     
+    
 ]
