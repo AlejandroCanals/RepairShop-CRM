@@ -24,9 +24,20 @@ class RmaItemSerializer(serializers.ModelSerializer):
         model = RmaItem
         fields = '__all__'
 
+    def create_or_update_technician(self, technician_data):
+        if isinstance(technician_data, dict):
+            # Si technician_data es un diccionario, créalo directamente
+            return Technician.objects.create(**technician_data)
+        else:
+            # Si technician_data es una cadena, crea el objeto Technician
+            # aquí utilizando el campo correcto que identifica al técnico
+            technician, _ = Technician.objects.get_or_create(technician_name=technician_data)
+            return technician
+
     def create(self, validated_data):
         technician_data = validated_data.pop('assigned_technician')
-        technician = Technician.objects.get_or_create(**technician_data)[0]
+        technician = self.create_or_update_technician(technician_data)
+
         rma_item = RmaItem.objects.create(assigned_technician=technician, **validated_data)
         return rma_item
 
@@ -40,18 +51,8 @@ class RmaItemSerializer(serializers.ModelSerializer):
         instance.resolution = validated_data.get('resolution', instance.resolution)
         instance.assigned_date = validated_data.get('assigned_date', instance.assigned_date)
 
-
-        if isinstance(technician_data, dict):
-            # Si technician_data es un diccionario, actualiza el objeto Technician
-            for key, value in technician_data.items():
-                setattr(instance.assigned_technician, key, value)
-            instance.assigned_technician.save()
-        else:
-            # Si technician_data es un objeto Technician, simplemente asigna
-            instance.assigned_technician = technician_data
-
-        # Resto del código de actualización según tus necesidades
-        # ...
+        # Actualiza el objeto Technician independientemente de si es un diccionario o un objeto existente
+        instance.assigned_technician = self.create_or_update_technician(technician_data)
 
         instance.save()
         return instance
