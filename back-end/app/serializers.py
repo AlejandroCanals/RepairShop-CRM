@@ -32,6 +32,14 @@ class RmaItemSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         technician_data = validated_data.get('assigned_technician')
+        instance.client_name = validated_data.get('client_name', instance.client_name)
+        instance.device_model = validated_data.get('device_model', instance.device_model)
+        instance.status = validated_data.get('status', instance.status)
+        instance.imei = validated_data.get('imei', instance.imei)
+        instance.reason = validated_data.get('reason', instance.reason)
+        instance.resolution = validated_data.get('resolution', instance.resolution)
+        instance.assigned_date = validated_data.get('assigned_date', instance.assigned_date)
+
 
         if isinstance(technician_data, dict):
             # Si technician_data es un diccionario, actualiza el objeto Technician
