@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CreateButton } from '../createButton';
 
 export function RmaTableRow({ rma }) {
-  const maxCharsInView = 20; // Número máximo de caracteres para mostrar en la vista de la tabla
+  const maxCharsInView = 90; // Número máximo de caracteres para mostrar en la vista de la tabla
 
   // Acortar el texto que se puede ver en la tablla 
   const truncatedReason = rma.reason.length > maxCharsInView

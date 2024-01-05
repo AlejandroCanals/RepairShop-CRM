@@ -3,9 +3,6 @@ from .models import RmaItem , Technician
 from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 
-
-
-
 class UserSerializer(UserCreateSerializer):
     class Meta:
         model = get_user_model()

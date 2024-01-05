@@ -40,3 +40,7 @@ h1,h2,h3,p{
 option{
   color: black !important;
 }
+
+.link-style:active {
+  color: #ff0000; /* Por ejemplo, cambiar el color del texto a rojo */
+}

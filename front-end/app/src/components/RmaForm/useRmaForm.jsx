@@ -160,9 +160,9 @@ export function useRmaForm() {
     setInforme({
       ...informe,
       [name]: value,
-      
+    
     });
-  
+
   };
 
   // Función para eliminar el informe

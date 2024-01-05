@@ -35,11 +35,11 @@ export function RmaTablee() {
 
       <div className="mt-6 ">
 
-        <div className='absolute bottom-[30px] right-[750px]'>
+        <div className='absolute bottom-[15px] right-[750px]'>
           <PaginationContainer
             itemsPerPage={itemsPerPage} totalItems={rmas.length} paginate={paginate} />
         </div>
-        <CreateButton text="Crear Nuevo Informe" className="absolute bottom-[27px] right-[100px] " onClick={handleButtonClick} />
+        <CreateButton text="Crear Nuevo Informe" className="absolute bottom-[15px] right-[100px] " onClick={handleButtonClick} />
 
 
       </div>
