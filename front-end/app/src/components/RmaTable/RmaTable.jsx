@@ -1,10 +1,10 @@
 import React from 'react';
-import { Content } from '../content';
+import { Content } from '../Common/content';
 import { useTableData } from './useTableData';
 import { RmaTableHeader } from './RmaTableHeader';
 import { RmaTableRow } from './RmaTableRow';
 import { PaginationContainer } from './PaginationContainer';
-import { CreateButton } from '../createButton';
+import { CreateButton } from '../Common/createButton';
 import { SearchBar } from './SearchBar';
 
 

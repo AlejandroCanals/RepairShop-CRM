@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CreateButton } from '../createButton';
+import { CreateButton } from '../Common/createButton';
 
 export function RmaTableRow({ rma }) {
   const maxCharsInView = 90; // Número máximo de caracteres para mostrar en la vista de la tabla
