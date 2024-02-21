@@ -8,8 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules/
-venv/
-
 dist
 dist-ssr
 *.local
@@ -25,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-
+../venv/
 
