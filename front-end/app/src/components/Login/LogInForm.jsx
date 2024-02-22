@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {loginUser} from './useLogin'
 import { useAuth } from './AuthContext';
 import { useNavigate } from "react-router-dom";
-import { navigateUtil } from "../navigateUtil";
+import { navigateUtil } from "../Common/navigateUtil";
 
 
 export function LoginForm() {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CreateButton } from '../createButton';
+import { CreateButton } from '../Common/createButton';
 
 export function RmaTableRow({ rma }) {
-  const maxCharsInView = 60; // Número máximo de caracteres para mostrar en la vista de la tabla
+  const maxCharsInView = 90; // Número máximo de caracteres para mostrar en la vista de la tabla
 
   // Acortar el texto que se puede ver en la tablla 
   const truncatedReason = rma.reason.length > maxCharsInView
@@ -28,6 +28,16 @@ export function RmaTableRow({ rma }) {
       }
     }
 
+    
+  //Formatear fecha 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Asegura dos dígitos en el mes
+    const day = date.getDate().toString().padStart(2, '0'); // Asegura dos dígitos en el día
+    return `${year}-${month}-${day}`;
+  }
+
   return (
     <tr key={rma.id}>
       <td className="px-5 py-4 whitespace-nowrap">{rma.client_name}</td>
@@ -35,8 +45,12 @@ export function RmaTableRow({ rma }) {
       <td className="px-5 py-4 whitespace-nowrap">{rma.imei}</td>
       <td className="px-5 py-4 whitespace-preline">{truncatedReason}</td>
       <td className="px-5 py-4 whitespace-nowrap">{mapStatusToText(rma.status)}</td>
-      <td className="px-5 py-4 whitespace-nowrap">{rma.technician}</td>
       <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{truncatedResolution}</td>
+      <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">{formatDate(rma.assigned_date)}</td>
+      <td className="px-5 py-4 whitespace-wrap overflow-preline overflow-ellipsis">
+  {rma.assigned_technician ? rma.assigned_technician.technician_name : 'Sin Técnico Asignado'}
+</td>
+
       <td className="px-5 py-4 whitespace-wrap overflow-hidden overflow-ellipsis">
       
         <Link to={`/editar-reporte/${rma.id}`}>

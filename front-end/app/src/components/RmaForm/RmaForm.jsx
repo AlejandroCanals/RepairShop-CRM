@@ -1,6 +1,6 @@
 
 import { useRmaForm } from "./useRmaForm";
-
+import React from 'react';
 
 export function RmaForm() {
   const {
@@ -11,8 +11,10 @@ export function RmaForm() {
     onSubmit,
     handleInputChange,
     handleDelete,
+    listaDeTecnicos,
+    handleTechnicianChange,
+    selectedTechnician,
   } = useRmaForm();
-
 
   return (
 
@@ -113,23 +115,7 @@ export function RmaForm() {
 
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="technician" className="block text-md font-semibold text-white">
-          Técnico
-        </label>
-        <input
-          type="text"
-          id="technician"
-          name="technician"
-          defaultValue={informe.technician}
-          onChange={handleInputChange}
 
-
-          className="mt-1 p-2 block w-full border border-gray-300 rounded-md  bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
-        />
-        {errors.technician && <span>This filed is required</span>}
-
-      </div>
 
       <div className="mb-4 ">
         <label htmlFor="resolution" className="block text-md font-semibold leading-6  " >
@@ -146,14 +132,51 @@ export function RmaForm() {
           className="mt-1 p-2 block w-full border border-gray-300 bg-gradient-to-br from-gray-800 to-gray-900 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
         />
       </div>
-
+      <div className="mb-4">
+        <label htmlFor="assigned_technician" className="block text-md font-semibold text-white">
+          Técnico Asignado
+        </label>
+        <select
+          id="assigned_technician"
+          name="assigned_technician"
+          value={selectedTechnician ? selectedTechnician.id : ""}
+          onChange={handleTechnicianChange}
+          className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+          
+          
+        >
+          <option value="" disabled>
+            Seleccione un técnico
+          </option>
+          {listaDeTecnicos.map((tecnico) => (
+            <option key={tecnico.id} value={tecnico.id}>
+              {tecnico.technician_name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="mb-4">
+        <label htmlFor="assigned_date" className="block text-md font-semibold text-white">
+          Fecha Asignada
+        </label>
+        <input
+          {...register("assigned_date", { required: true })}
+          type="date"
+          id="assigned_date"
+          name="assigned_date"
+          defaultValue={informe.assigned_date}
+          onChange={handleInputChange}
+          className="mt-1 p-2 block w-full border border-gray-300 rounded-md bg-gradient-to-br from-gray-800 to-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+        />
+        {errors.assigned_date && <span>This field is required</span>}
+      </div>
       <div className="mb-4">
 
 
-        <button type="submit"  className="bg-green-500 text-white px-4 py-2 rounded-lg">
+        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-lg">
           {informeId ? 'Actualizar' : ' Crear Informe RMA'}
         </button>
-   
+
         {informeId && (
           <button type="button" onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 ml-2 rounded-lg">
             Eliminar

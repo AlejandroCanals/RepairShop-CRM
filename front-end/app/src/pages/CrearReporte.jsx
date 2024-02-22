@@ -1,14 +1,11 @@
-import { Content } from '../components/content';
-import { RmaForm } from '../components/RmaForm/RmaForm';
+import { Content } from "../components/Common/content";
+import { RmaForm } from "../components/RmaForm/RmaForm";
 export function CreateReport() {
-
-
   return (
-
-    <Content>  
+    <Content>
       <div>
         <RmaForm />
       </div>
-    </Content>  
+    </Content>
   );
 }

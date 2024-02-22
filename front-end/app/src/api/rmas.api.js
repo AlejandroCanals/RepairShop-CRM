@@ -4,6 +4,7 @@ const rmaApi = axios.create({
     baseURL: 'http://127.0.0.1:8000/app/rmaview/'
 });
 
+
 export const getAllRmas = () => {
     return rmaApi.get('/');
 };
@@ -24,4 +25,6 @@ export const deleteRma = (id) => {
 export const getRmaById = (id) => {
     return rmaApi.get(`/${id}/`);
   };
+
+
 

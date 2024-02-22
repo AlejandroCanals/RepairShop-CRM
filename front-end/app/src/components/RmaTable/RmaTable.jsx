@@ -1,10 +1,10 @@
 import React from 'react';
-import { Content } from '../content';
+import { Content } from '../Common/content';
 import { useTableData } from './useTableData';
 import { RmaTableHeader } from './RmaTableHeader';
 import { RmaTableRow } from './RmaTableRow';
 import { PaginationContainer } from './PaginationContainer';
-import { CreateButton } from '../createButton';
+import { CreateButton } from '../Common/createButton';
 import { SearchBar } from './SearchBar';
 
 
@@ -35,11 +35,11 @@ export function RmaTablee() {
 
       <div className="mt-6 ">
 
-        <div className='absolute bottom-[30px] right-[750px]'>
+        <div className='absolute bottom-[15px] right-[750px]'>
           <PaginationContainer
             itemsPerPage={itemsPerPage} totalItems={rmas.length} paginate={paginate} />
         </div>
-        <CreateButton text="Crear Nuevo Informe" className="absolute bottom-[27px] right-[100px] " onClick={handleButtonClick} />
+        <CreateButton text="Crear Nuevo Informe" className="absolute bottom-[15px] right-[100px] " onClick={handleButtonClick} />
 
 
       </div>

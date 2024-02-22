@@ -1,10 +1,11 @@
-from rest_framework.decorators import action
+
 from rest_framework import viewsets
-from .serializers import RmaItemSerializer, TechnicianSerializer
-from .models import RmaItem, Technician
+from .serializers import RmaItemSerializer, TechnicianSerializer ,Technician
+from .models import RmaItem
 from django.http import JsonResponse
 from django.db.utils import OperationalError
 from rest_framework.response import Response
+
 #Autentificación
 from rest_framework import status
 from rest_framework.views import APIView
@@ -14,13 +15,24 @@ from rest_framework.authtoken.models import Token
 # Create your views here.
 
 class RmaView(viewsets.ModelViewSet):
-    serializer_class = RmaItemSerializer
     queryset = RmaItem.objects.all()
+    serializer_class = RmaItemSerializer
 
+    def perform_create(self, serializer):
+        assigned_technician_data = self.request.data.get('assigned_technician')
+        assigned_technician, _ = Technician.objects.get_or_create(**assigned_technician_data)
+        serializer.save(assigned_technician=assigned_technician)
+
+    def perform_update(self, serializer):
+        assigned_technician_data = self.request.data.get('assigned_technician')
+        assigned_technician = Technician.objects.get_or_create(**assigned_technician_data)[0]
+        serializer.save(assigned_technician=assigned_technician)
+    
 
 class TechnicianView(viewsets.ModelViewSet):
-    serializer_class = TechnicianSerializer
     queryset = Technician.objects.all()
+    serializer_class = TechnicianSerializer
+    
 
 
 class StatusCountView(viewsets.ViewSet):

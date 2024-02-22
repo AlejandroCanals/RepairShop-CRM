@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Sidebar } from "./components/Sidebar/sidebar";
+import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Inicio } from "./pages/Inicio";
 import { Reportes } from "./pages/Reportes";
 import { CreateReport } from "./pages/CrearReporte";
