@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$a1iekb*%#kf5+2*bgho5fj3hytc!)&8-hx*93^g1msnjtct-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['repairshop-crm.onrender.com']
 
 
 # Application definition
