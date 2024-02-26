@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$a1iekb*%#kf5+2*bgho5fj3hytc!)&8-hx*93^g1msnjtct-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['repaircrm.netlify.app','repairshop-crm.onrender.com']
 
 
 # Application definition
@@ -131,7 +132,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173'
+    'https://repaircrm.netlify.app'
     
 ]
 
