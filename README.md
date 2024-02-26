@@ -17,4 +17,30 @@ where I have created an application where you can read, create, update and delet
 
 # Steps to follow to download the project locally
 
-    Clone or download this repository from GitHub.
+    1.Clone or download this repository from GitHub.
+
+2.Create virtual environment
+
+    virtualenv venv
+
+3.Activate virtual environment
+
+    venv\Scripts\activate
+
+4.Install backend dependencies
+
+    cd back end
+    pip install -r requirements.txt
+
+5.Activate Server
+
+    python manage.py runserver
+
+
+6.Install Front-end dependencies and activate server
+
+    cd front end
+    cd app
+    npm install
+    npm run dev
+
