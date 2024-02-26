@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$a1iekb*%#kf5+2*bgho5fj3hytc!)&8-hx*93^g1msnjtct-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = ['repairshop-crm.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -130,7 +130,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-cors_allowed_origins = os.getenv('CORS_ALLOWED_ORIGINS')
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173'
+    
+]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS' : 'rest_framework.schemas.coreapi.AutoSchema',
