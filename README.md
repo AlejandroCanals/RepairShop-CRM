@@ -44,3 +44,6 @@ where I have created an application where you can read, create, update and delet
     npm install
     npm run dev
 
+
+[![Video](https://i9.ytimg.com/vi/njqqvOGuyyk/mqdefault.jpg?sqp=CKCj864G-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGD0gVShyMA8=&rs=AOn4CLD-XLe6xMySAhWg3Tmr4CdFoerwCQ)](https://youtu.be/njqqvOGuyyk)
+
