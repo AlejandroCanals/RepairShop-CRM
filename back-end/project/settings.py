@@ -131,7 +131,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173'
+    'https://65d7825b97da6315e7910b88--boisterous-sundae-847e13.netlify.app/log-in'
     
 ]
 
