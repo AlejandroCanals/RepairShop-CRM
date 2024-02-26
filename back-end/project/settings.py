@@ -130,11 +130,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    'https://65d7825b97da6315e7910b88--boisterous-sundae-847e13.netlify.app/log-in'
-    
-]
-
+cors_allowed_origins = os.getenv('CORS_ALLOWED_ORIGINS')
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS' : 'rest_framework.schemas.coreapi.AutoSchema',
