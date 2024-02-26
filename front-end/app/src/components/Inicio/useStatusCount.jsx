@@ -9,7 +9,7 @@ export function useStatusCounts() {
   });
 
   const StatusCount = axios.create({
-    baseURL: 'http://127.0.0.1:8000/app/',
+    baseURL: 'https://repairshop-crm.onrender.com/app/',
   });
 
   useEffect(() => {
