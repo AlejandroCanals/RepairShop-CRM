@@ -44,7 +44,7 @@ where I have created an application where you can read, create, update and delet
     npm install
     npm run dev
 
-# Click on the video to see a brief demo of the app
+# Click on the image to see a brief video demo of the app
 [![Gestor De Reparaciones](https://github.com/AlejandroCanals/RepairShop-CRM/assets/129771462/1e78f144-8f88-4dac-8c05-77c929d88f10)](https://youtu.be/njqqvOGuyyk)
 
 
