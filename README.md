@@ -9,7 +9,7 @@ where I have created an application where you can read, create, update and delet
 
 -Tailwind
 
--JavaScript (React)
+-JavaScript (React) 
 
 -Python(Django)
 
