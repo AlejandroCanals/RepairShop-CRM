@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-$a1iekb*%#kf5+2*bgho5fj3hytc!)&8-hx*93^g1msnjtct-i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['repairshop-crm.onrender.com', 'repaircrm.netlify.app']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'repairshop-crm.onrender.com',
+    'repaircrm.netlify.app'
+]
 
 
 
@@ -132,10 +137,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173'
-    
+    'http://localhost:5173',
+    'https://repairshop-crm.onrender.com',
+    'https://repaircrm.netlify.app'
 ]
-
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS' : 'rest_framework.schemas.coreapi.AutoSchema',
