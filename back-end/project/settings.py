@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-$a1iekb*%#kf5+2*bgho5fj3hytc!)&8-hx*93^g1msnjtct-i
 DEBUG = True
 
 ALLOWED_HOSTS = ['repaircrm.netlify.app','repairshop-crm.onrender.com']
-]
+
 
 
 # Application definition
