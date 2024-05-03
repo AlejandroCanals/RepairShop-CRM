@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const rmaApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/app/rmaview/'
+    baseURL: 'https://repairshop-crm.onrender.com/app/rmaview/'
 });
 
-
+// baseURL: 'http://127.0.0.1:8000/app/rmaview/'
 export const getAllRmas = () => {
     return rmaApi.get('/');
 };
